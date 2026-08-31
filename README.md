@@ -1,45 +1,57 @@
-# Welcome to your Lovable project
+# گردش آنلاین — Archive Page
 
-This project was built with [Lovable](https://lovable.dev).
+A single, fully static page that records the end of activity of **GardeshOnline**
+(«گردش آنلاین»), a Persian travel-content publishing project.
 
-## Build with Lovable
+Built with Vite + React + TypeScript + Tailwind CSS v4. No backend, no database,
+no server functions — the build output is plain static files.
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+## Local development
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Requires Node.js 20+.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
 npm run dev
 ```
 
-## Built with
+The dev server runs at http://localhost:8080.
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
-
-## Static build & GitHub Pages
-
-This site is a single static page — no database, auth, server functions, or API routes.
+## Build
 
 ```sh
-npm run build
+npm run build      # type-check + build into dist/
+npm run preview    # preview the production build locally
 ```
 
-The static output is written to `dist/` (client assets). To deploy on GitHub Pages:
+## Base path / hosting
 
-1. Push the repository to GitHub.
-2. In **Settings → Pages**, choose **GitHub Actions** (or deploy the built folder to the `gh-pages` branch).
-3. If serving from a project path (`https://user.github.io/repo/`), set the Vite `base` option to `/repo/` in `vite.config.ts` before building. For a custom domain at the root, leave `base` as the default and add a `CNAME` file in `public/`.
+The Vite `base` is configurable:
 
-Because the site is one page with no client-side routes, no server fallback rewrite is required.
+- **Dev** always serves from `/`.
+- **Build** defaults to `/site/`, matching the GitHub Pages project URL
+  `https://<owner>.github.io/site/`.
+- For a custom domain or root hosting, build with:
+
+  ```sh
+  BASE_PATH=/ npm run build
+  ```
+
+  and add a `CNAME` file containing your domain to `public/`.
+
+## GitHub Pages deployment
+
+`.github/workflows/pages.yml` builds and deploys with the official GitHub Pages
+actions on every push to `main`, and on manual `workflow_dispatch`.
+
+One-time setup in the repository:
+
+1. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
+2. Push to `main`. The workflow installs dependencies with `npm ci`, runs
+   `npm run build` with `BASE_PATH=/site/`, uploads `dist/`, and deploys it.
+
+To switch to a custom domain later, change `BASE_PATH` in the workflow to `/`
+and configure the domain under Settings → Pages.
+
+Since the site is a single page with no client-side router, no SPA fallback
+rewrite is needed.
