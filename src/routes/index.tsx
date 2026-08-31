@@ -109,7 +109,7 @@ function Index() {
                 >
                   <div className="flex items-baseline gap-4">
                     <span className="text-[11px] font-light tabular-nums text-evergreen/70">
-                      {String(i + 1).padStart(2, "۰")}
+                      {["۰۱", "۰۲", "۰۳", "۰۴"][i]}
                     </span>
                     <h3 className="text-lg font-medium tracking-[-0.01em] text-ink sm:text-xl">
                       {item.title}
