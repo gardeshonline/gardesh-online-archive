@@ -1,26 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Wordmark } from "@/components/Wordmark";
 import { JourneyMotif } from "@/components/JourneyMotif";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "گردش آنلاین — پایان فعالیت" },
-      {
-        name: "description",
-        content:
-          "گردش آنلاین با هدف روایت سفر، معرفی مقصدها و تولید محتوای گردشگری شکل گرفت. امروز فعالیت این رسانه به پایان رسیده است.",
-      },
-      { property: "og:title", content: "گردش آنلاین — پایان فعالیت" },
-      {
-        property: "og:description",
-        content:
-          "قصه‌ی گردش آنلاین اینجا تمام می‌شود. قصه‌ی سفر نه. صفحه‌ی آرشیو رسانه‌ی گردش آنلاین.",
-      },
-    ],
-  }),
-  component: Index,
-});
 
 const chapters = [
   {
@@ -41,7 +20,9 @@ const chapters = [
   },
 ];
 
-function Index() {
+const numerals = ["۰۱", "۰۲", "۰۳", "۰۴"];
+
+export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground antialiased">
       <div className="mx-auto w-full max-w-[1180px] px-6 sm:px-10 lg:px-16">
@@ -109,7 +90,7 @@ function Index() {
                 >
                   <div className="flex items-baseline gap-4">
                     <span className="text-[11px] font-light tabular-nums text-evergreen/70">
-                      {["۰۱", "۰۲", "۰۳", "۰۴"][i]}
+                      {numerals[i]}
                     </span>
                     <h3 className="text-lg font-medium tracking-[-0.01em] text-ink sm:text-xl">
                       {item.title}
