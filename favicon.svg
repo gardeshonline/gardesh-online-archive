@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="10" fill="#f7f5ef" />
+  <text
+    x="32"
+    y="45"
+    text-anchor="middle"
+    font-family="Vazirmatn, Tahoma, sans-serif"
+    font-size="40"
+    font-weight="600"
+    fill="#2b2926"
+  >گ</text>
+</svg>
