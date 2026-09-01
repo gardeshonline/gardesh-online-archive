@@ -1,0 +1,457 @@
+/*
+ * GardeshOnline — archival static stylesheet.
+ * Plain CSS. No build step required.
+ */
+
+:root {
+  --paper: oklch(0.973 0.008 92);
+  --paper-deep: oklch(0.951 0.011 92);
+  --ink: oklch(0.211 0.012 75);
+  --ink-soft: oklch(0.472 0.012 80);
+  --evergreen: oklch(0.416 0.058 165);
+  --hairline: oklch(0.211 0.012 75 / 12%);
+  --font-sans: "Vazirmatn", ui-sans-serif, "Segoe UI", Tahoma, system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "kern";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  isolation: isolate;
+}
+
+/* Extremely subtle paper grain, CSS only */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: radial-gradient(var(--ink) 0.5px, transparent 0.5px);
+  background-size: 3px 3px;
+}
+
+::selection {
+  background-color: color-mix(in oklab, var(--evergreen) 18%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--evergreen);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+li {
+  margin: 0;
+}
+
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+.shell {
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.hairline-t {
+  border-top: 1px solid var(--hairline);
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1.75rem;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.28em;
+  line-height: 1;
+  font-size: 1.125rem;
+}
+
+.wordmark__strong {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.wordmark__light {
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+}
+
+.status__dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background-color: color-mix(in oklab, var(--evergreen) 70%, transparent);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding-top: 4rem;
+  padding-bottom: 2.5rem;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  color: var(--evergreen);
+}
+
+.hero__title {
+  margin-top: 1.75rem;
+  max-width: 19ch;
+  font-size: 2rem;
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-wrap: balance;
+  word-spacing: 0.01em;
+}
+
+.hero__title span {
+  display: block;
+  font-weight: 300;
+  color: var(--ink-soft);
+}
+
+.hero__lede {
+  margin-top: 2.25rem;
+  max-width: 52ch;
+  font-size: 0.95rem;
+  line-height: 2.1;
+  font-weight: 300;
+  color: var(--ink-soft);
+}
+
+/* ---------- Journey motif ---------- */
+
+.motif {
+  padding-block: 2.5rem;
+}
+
+.motif svg {
+  display: block;
+  width: 100%;
+  height: 5rem;
+  color: var(--evergreen);
+}
+
+/* ---------- آنچه بودیم ---------- */
+
+.chapters {
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  color: var(--ink-soft);
+}
+
+.chapters__list {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background-color: var(--hairline);
+}
+
+.chapter {
+  background-color: var(--paper);
+  padding-block: 2rem;
+}
+
+.chapter__head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.chapter__num {
+  font-size: 11px;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+  color: color-mix(in oklab, var(--evergreen) 70%, transparent);
+}
+
+.chapter__title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.chapter__body {
+  margin-top: 0.75rem;
+  max-width: 42ch;
+  padding-inline-start: 2rem;
+  font-size: 0.875rem;
+  line-height: 2;
+  font-weight: 300;
+  color: var(--ink-soft);
+}
+
+/* ---------- Closing ---------- */
+
+.closing {
+  padding-block: 4rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.closing__title {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.closing__body {
+  max-width: 56ch;
+  font-size: 0.95rem;
+  line-height: 2.15;
+  font-weight: 300;
+  color: var(--ink-soft);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-block: 2rem;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
+.site-footer__mark {
+  letter-spacing: 0.14em;
+}
+
+.site-footer .wordmark {
+  font-size: 0.875rem;
+  opacity: 0.7;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (min-width: 640px) {
+  .shell {
+    padding-inline: 2.5rem;
+  }
+
+  .site-header {
+    padding-block: 2.25rem;
+  }
+
+  .wordmark {
+    font-size: 1.25rem;
+  }
+
+  .status,
+  .eyebrow,
+  .section-label,
+  .site-footer {
+    font-size: 0.75rem;
+  }
+
+  .hero {
+    padding-top: 6rem;
+  }
+
+  .hero__title {
+    font-size: 2.9rem;
+    line-height: 1.3;
+  }
+
+  .hero__lede,
+  .closing__body {
+    font-size: 1rem;
+  }
+
+  .motif {
+    padding-block: 4rem;
+  }
+
+  .motif svg {
+    height: 7rem;
+  }
+
+  .chapters {
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+  }
+
+  .chapters__list {
+    margin-top: 3.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .chapter {
+    padding: 3rem 2rem;
+  }
+
+  .chapter:first-child {
+    padding-inline-start: 0;
+  }
+
+  .closing {
+    padding-block: 6rem;
+  }
+
+  .closing__title {
+    font-size: 2rem;
+    line-height: 1.55;
+  }
+
+  .site-footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .shell {
+    padding-inline: 4rem;
+  }
+
+  .hero {
+    padding-top: 8rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .hero__title {
+    max-width: 22ch;
+    font-size: 3.75rem;
+    line-height: 1.22;
+  }
+
+  .chapter {
+    padding-block: 3.5rem;
+  }
+
+  .closing {
+    padding-block: 8rem;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 4rem;
+  }
+}
+
+/* ---------- Motion ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: reveal-in 900ms cubic-bezier(0.22, 0.75, 0.24, 1) forwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes reveal-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.draw-line {
+  stroke-dasharray: var(--dash, 1200);
+  stroke-dashoffset: var(--dash, 1200);
+  animation: draw 2600ms cubic-bezier(0.32, 0.6, 0.18, 1) forwards;
+  animation-delay: var(--reveal-delay, 400ms);
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.dot-in {
+  opacity: 0;
+  animation: dot-appear 700ms ease-out forwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes dot-appear {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal,
+  .dot-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .draw-line {
+    stroke-dashoffset: 0;
+  }
+}
