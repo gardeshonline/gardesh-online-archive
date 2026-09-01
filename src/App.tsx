@@ -61,8 +61,8 @@ export default function App() {
               className="reveal mt-9 max-w-[52ch] text-[0.95rem] leading-[2.1] font-light text-muted-foreground sm:text-base"
               style={{ ["--reveal-delay" as string]: "280ms" }}
             >
-              گردش آنلاین با هدف روایت سفر، معرفی مقصدها و تولید محتوای گردشگری شکل گرفت. امروز
-              فعالیت این رسانه به پایان رسیده است.
+              گردش آنلاین یک رسانه فارسی‌زبان در حوزه گردش، سفر، معرفی مقصدها و محتوای گردشگری
+              بود. امروز فعالیت این پروژه به پایان رسیده و این صفحه به‌عنوان آرشیو باقی می‌ماند.
             </p>
           </section>
 
