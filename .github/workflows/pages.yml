@@ -29,10 +29,10 @@ jobs:
         run: npm ci
 
       - name: Build
-        # Project pages are served from https://<owner>.github.io/site/
-        # For a custom domain served at the root, set BASE_PATH: /
+        # Served from a custom domain at the repository root.
+        # For a GitHub Pages project URL (user.github.io/site/), use BASE_PATH: /site/
         env:
-          BASE_PATH: /site/
+          BASE_PATH: /
         run: npm run build
 
       - uses: actions/configure-pages@v5
