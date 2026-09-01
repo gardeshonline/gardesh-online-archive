@@ -29,15 +29,14 @@ npm run preview    # preview the production build locally
 The Vite `base` is configurable:
 
 - **Dev** always serves from `/`.
-- **Build** defaults to `/site/`, matching the GitHub Pages project URL
-  `https://<owner>.github.io/site/`.
-- For a custom domain or root hosting, build with:
+- **Build** defaults to `/`, matching root / custom-domain hosting.
+- For a GitHub Pages project URL (`https://<owner>.github.io/site/`), build with:
 
   ```sh
-  BASE_PATH=/ npm run build
+  BASE_PATH=/site/ npm run build
   ```
 
-  and add a `CNAME` file containing your domain to `public/`.
+A `CNAME` file containing the custom domain is already in `public/`.
 
 ## GitHub Pages deployment
 
@@ -47,11 +46,9 @@ actions on every push to `main`, and on manual `workflow_dispatch`.
 One-time setup in the repository:
 
 1. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
-2. Push to `main`. The workflow installs dependencies with `npm ci`, runs
-   `npm run build` with `BASE_PATH=/site/`, uploads `dist/`, and deploys it.
-
-To switch to a custom domain later, change `BASE_PATH` in the workflow to `/`
-and configure the domain under Settings → Pages.
+2. Configure the custom domain (`gardeshonline.com`) under **Settings → Pages → Custom domain**.
+3. Push to `main`. The workflow installs dependencies with `npm ci`, runs
+   `npm run build` with `BASE_PATH=/`, uploads `dist/`, and deploys it.
 
 Since the site is a single page with no client-side router, no SPA fallback
 rewrite is needed.
