@@ -1,8 +1,12 @@
-name: Deploy to GitHub Pages
+name: Deploy Vite build to GitHub Pages
 
+# Trigger AFTER GitHub's built-in Pages (Jekyll/branch) deployment finishes,
+# so our compiled Vite artifact is always the last deployment. The built-in
+# workflow is named "pages build and deployment".
 on:
-  push:
-    branches: [main]
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -16,6 +20,10 @@ concurrency:
 
 jobs:
   build:
+    # Run on manual dispatch, or after a successful built-in Pages deployment.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,7 +37,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        # Served from a custom domain at the repository root.
+        # Served from the custom domain gardeshonline.com at the repository root.
         # For a GitHub Pages project URL (user.github.io/site/), use BASE_PATH: /site/
         env:
           BASE_PATH: /
@@ -43,6 +51,9 @@ jobs:
 
   deploy:
     needs: build
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
