@@ -1,54 +1,71 @@
-# گردش آنلاین — Archive Page
+# Gardesh
 
-A single, fully static page that records the end of activity of **GardeshOnline**
-(«گردش آنلاین»), a Persian travel-content publishing project.
+Temporary landing page for the new **Gardesh** platform at [gardeshonline.com](https://gardeshonline.com).
 
-Built with Vite + React + TypeScript + Tailwind CSS v4. No backend, no database,
-no server functions — the build output is plain static files.
+The public page is intentionally minimal while the new product is being prepared. It currently shows the official Gardesh symbol and a short “Coming Soon” message.
+
+## Current purpose
+
+This repository currently serves only the public pre-launch landing page for Gardesh. It is not the application repository for the full Gardesh platform and contains no backend, database, authentication, media services, or product features.
+
+## Stack
+
+- React 19
+- TypeScript
+- Vite 7
+- Tailwind CSS 4
+- Static hosting on GitHub Pages
+
+## Brand assets
+
+The landing uses the official Gardesh symbol in `logo.png` / `public/logo.png`.
+
+The favicon is generated directly from that same logo asset so the browser icon stays consistent with the Gardesh identity.
+
+Current landing colors:
+
+- Page background: `#090A0B`
+- Logo surface: `#0E1310`
+- Primary accent: `#D8F46C`
+- Primary text: `#F5F5F1`
+- Muted text: `#8D9095`
 
 ## Local development
 
-Requires Node.js 20+.
+Node.js 20+ is recommended.
 
-```sh
+```bash
 npm install
 npm run dev
 ```
 
-The dev server runs at http://localhost:8080.
+The development server runs on:
+
+```text
+http://localhost:8080
+```
 
 ## Build
 
-```sh
-npm run build      # type-check + build into dist/
-npm run preview    # preview the production build locally
+```bash
+npm run build
+npm run preview
 ```
 
-## Base path / hosting
+Production output is written to `dist/`.
 
-The Vite `base` is configurable:
+## Hosting
 
-- **Dev** always serves from `/`.
-- **Build** defaults to `/`, matching root / custom-domain hosting.
-- For a GitHub Pages project URL (`https://<owner>.github.io/site/`), build with:
+The custom domain is:
 
-  ```sh
-  BASE_PATH=/site/ npm run build
-  ```
+```text
+https://gardeshonline.com
+```
 
-A `CNAME` file containing the custom domain is already in `public/`.
+GitHub Pages serves the repository on the custom domain. `CNAME` is kept in both the repository root and `public/` so the domain is preserved for both direct Pages serving and Vite build output.
 
-## GitHub Pages deployment
+The root `index.html` is kept deployable as a standalone static landing page, while `src/` contains the React/Vite version of the same experience.
 
-`.github/workflows/pages.yml` builds and deploys with the official GitHub Pages
-actions on every push to `main`, and on manual `workflow_dispatch`.
+## Repository status
 
-One-time setup in the repository:
-
-1. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
-2. Configure the custom domain (`gardeshonline.com`) under **Settings → Pages → Custom domain**.
-3. Push to `main`. The workflow installs dependencies with `npm ci`, runs
-   `npm run build` with `BASE_PATH=/`, uploads `dist/`, and deploys it.
-
-Since the site is a single page with no client-side router, no SPA fallback
-rewrite is needed.
+This is a temporary pre-launch surface. The page can be replaced when the full Gardesh product is ready for public release.
