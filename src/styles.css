@@ -1,194 +1,191 @@
-@import "tailwindcss" source(none);
-@source "../src";
-
-@custom-variant dark (&:is(.dark *));
-
-/*
- * GardeshOnline — archival design system.
- * Paper-warm background, ink typography, single muted evergreen accent.
- */
-
-@theme inline {
-  --radius-sm: calc(var(--radius) - 2px);
-  --radius-md: var(--radius);
-  --radius-lg: calc(var(--radius) + 2px);
-  --radius-xl: calc(var(--radius) + 6px);
-
-  --font-sans: "Vazirmatn", ui-sans-serif, "Segoe UI", Tahoma, system-ui, sans-serif;
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-hairline: var(--hairline);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-paper: var(--paper);
-  --color-paper-deep: var(--paper-deep);
-  --color-ink: var(--ink);
-  --color-ink-soft: var(--ink-soft);
-  --color-evergreen: var(--evergreen);
-}
+@import "tailwindcss";
 
 :root {
-  --radius: 0.375rem;
-
-  --paper: oklch(0.973 0.008 92);
-  --paper-deep: oklch(0.951 0.011 92);
-  --ink: oklch(0.211 0.012 75);
-  --ink-soft: oklch(0.472 0.012 80);
-  --evergreen: oklch(0.416 0.058 165);
-
-  --background: var(--paper);
-  --foreground: var(--ink);
-  --card: var(--paper);
-  --card-foreground: var(--ink);
-  --popover: var(--paper);
-  --popover-foreground: var(--ink);
-  --primary: var(--evergreen);
-  --primary-foreground: oklch(0.98 0.006 92);
-  --secondary: var(--paper-deep);
-  --secondary-foreground: var(--ink);
-  --muted: var(--paper-deep);
-  --muted-foreground: var(--ink-soft);
-  --accent: var(--evergreen);
-  --accent-foreground: oklch(0.98 0.006 92);
-  --destructive: oklch(0.512 0.164 27);
-  --destructive-foreground: oklch(0.98 0.006 92);
-  --hairline: oklch(0.211 0.012 75 / 12%);
-  --border: var(--hairline);
-  --input: var(--hairline);
-  --ring: var(--evergreen);
+  font-family: Vazirmatn, "IRANSansX", Tahoma, Arial, sans-serif;
+  color: #f5f5f1;
+  background: #090a0b;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
-@layer base {
-  * {
-    border-color: var(--color-border);
-  }
-
-  html {
-    -webkit-text-size-adjust: 100%;
-  }
-
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    font-family: var(--font-sans);
-    font-feature-settings: "ss01", "kern";
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  ::selection {
-    background-color: color-mix(in oklab, var(--evergreen) 18%, transparent);
-  }
-
-  :focus-visible {
-    outline: 2px solid var(--evergreen);
-    outline-offset: 3px;
-    border-radius: 2px;
-  }
+* {
+  box-sizing: border-box;
 }
 
-/* Extremely subtle paper grain, CSS only */
-@utility paper-grain {
+html,
+body,
+#root {
+  min-width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  background: #090a0b;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.landing {
   position: relative;
   isolation: isolate;
-  &::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.035;
-    background-image: radial-gradient(var(--ink) 0.5px, transparent 0.5px);
-    background-size: 3px 3px;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 32px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(216, 244, 108, 0.055), transparent 26%),
+    #090a0b;
+}
+
+.landing::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 28px;
+  pointer-events: none;
+}
+
+.ambient {
+  position: absolute;
+  z-index: -2;
+  border-radius: 999px;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.ambientOne {
+  width: 290px;
+  height: 290px;
+  top: -140px;
+  right: 8%;
+  background: rgba(216, 244, 108, 0.08);
+}
+
+.ambientTwo {
+  width: 240px;
+  height: 240px;
+  bottom: -130px;
+  left: 9%;
+  background: rgba(92, 72, 132, 0.055);
+}
+
+.content {
+  width: min(92vw, 680px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: enter 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.logoFrame {
+  width: clamp(122px, 16vw, 166px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  margin-bottom: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 34px;
+  background: #d8f46c;
+  box-shadow:
+    0 24px 72px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(216, 244, 108, 0.06);
+}
+
+.logo {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  display: block;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.eyebrow {
+  margin: 0 0 15px;
+  color: #d8f46c;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+}
+
+h1 {
+  margin: 0;
+  color: #f5f5f1;
+  font-size: clamp(48px, 8vw, 82px);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+}
+
+.subtitle {
+  margin: 22px 0 0;
+  color: #8d9095;
+  font-size: clamp(14px, 2vw, 17px);
+  font-weight: 400;
+  line-height: 1.9;
+}
+
+footer {
+  position: absolute;
+  bottom: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(245, 245, 241, 0.34);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  direction: ltr;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
   }
-}
-
-@utility hairline-t {
-  border-top: 1px solid var(--hairline);
-}
-
-@utility hairline-b {
-  border-bottom: 1px solid var(--hairline);
-}
-
-@utility text-balance-fa {
-  text-wrap: balance;
-  word-spacing: 0.01em;
-}
-
-/* Refined reveal motion */
-@utility reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  animation: reveal-in 900ms cubic-bezier(0.22, 0.75, 0.24, 1) forwards;
-  animation-delay: var(--reveal-delay, 0ms);
-}
-
-@keyframes reveal-in {
   to {
     opacity: 1;
-    transform: none;
+    transform: translateY(0) scale(1);
   }
 }
 
-@utility draw-line {
-  stroke-dasharray: var(--dash, 1200);
-  stroke-dashoffset: var(--dash, 1200);
-  animation: draw 2600ms cubic-bezier(0.32, 0.6, 0.18, 1) forwards;
-  animation-delay: var(--reveal-delay, 400ms);
-}
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
+@media (max-width: 640px) {
+  .landing {
+    padding: 22px;
   }
-}
 
-@utility dot-in {
-  opacity: 0;
-  animation: dot-appear 700ms ease-out forwards;
-  animation-delay: var(--reveal-delay, 0ms);
-}
+  .landing::before {
+    inset: 12px;
+    border-radius: 22px;
+  }
 
-@keyframes dot-appear {
-  to {
-    opacity: 1;
+  .logoFrame {
+    margin-bottom: 34px;
+    border-radius: 28px;
+  }
+
+  footer {
+    bottom: 30px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-delay: 0ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
-
-  .reveal,
-  .dot-in {
-    opacity: 1;
-    transform: none;
-  }
-
-  .draw-line {
-    stroke-dashoffset: 0;
+  .content {
+    animation: none;
   }
 }
